@@ -17,5 +17,16 @@ const insertUserDb =async(firstName,lastName,userAge,Gender,userRole,emailAdd,us
         `,[firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile])
      return data
     }
+    const deleteUserDb=async(userID)=>{
+        await pool.query(' DELETE FROM users WHERE userID = ?',[userID])
+               // return data 
+           }
 
-export {getUsersDb,selectUsersDb,insertUserDb}
+    const updateUserDb=async(firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile, userID)=>{
+        
+          await pool.query('UPDATE users SET firstName = ?, lastName = ?, userAge = ?, Gender = ?, userRole= ?, emailAdd = ? ,userPass = ? ,userProfile = ? WHERE userID = ?', [firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile, userID]);
+
+        }; 
+    
+
+export {getUsersDb,selectUsersDb,insertUserDb,deleteUserDb,updateUserDb}

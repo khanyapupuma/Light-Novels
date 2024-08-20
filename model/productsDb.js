@@ -10,4 +10,8 @@ const selectProductsDb =  async(prodID)=>{
     
     
 }
-export {getProductsDb,selectProductsDb}
+const deleteProductDb=async(prodID)=>{
+    await pool.query(' DELETE FROM products WHERE prodID = ?',[prodID])
+           // return data 
+       }
+export {getProductsDb,selectProductsDb,deleteProductDb}

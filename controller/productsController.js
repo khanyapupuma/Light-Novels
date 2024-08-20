@@ -1,4 +1,4 @@
-import { getProductsDb,selectProductsDb } from '../model/productsDb.js'
+import { getProductsDb,selectProductsDb ,deleteProductDb} from '../model/productsDb.js'
 // import {hash} from 'bcrypt'
 
 const getProducts =async(req,res)=>{
@@ -11,4 +11,10 @@ const selectProduct = async(req,res)=>{
     // res.send('Endpoint reached !')
     
 }
-export{getProducts,selectProduct}
+const deleteProduct = async(req,res)=>{
+    res.json(await deleteProductDb(req.params.id))
+    res.send('Data was deleted successfully ! ')
+}
+
+
+export{getProducts,selectProduct,deleteProduct}
