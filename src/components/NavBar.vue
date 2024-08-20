@@ -31,13 +31,13 @@
             <a class="nav-link" href="#about"><i class="bi bi-file-person"></i> About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#resume"><i class="bi bi-person-vcard"></i> Products</a>
+            <a class="nav-link" href="#products"><i class="bi bi-person-vcard"></i> Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#testimonials"><i class="bi bi-people-fill"></i> Admin</a>
+            <a class="nav-link" href="#admin"><i class="bi bi-people-fill"></i> Admin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#reachMe"><i class="bi bi-telephone"></i> Reach Us</a>
+            <a class="nav-link" href="#reachUs"><i class="bi bi-telephone"></i> Reach Us</a>
           </li>
         </ul>
       </div>
