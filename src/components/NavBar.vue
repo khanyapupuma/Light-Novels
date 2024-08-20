@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg sticky-top">
     <div class="container-fluid">
-      <router-link  class="navbar-brand" to="#home">
+      <router-link class="navbar-brand" to="#home">
         <img
-          src="https://khanyapupuma.github.io/all-images/all-images/Images/gtlogo.png"
+          src="https://khanyapupuma.github.io/all-images/all-images/Images/Nlogo7.png"
           alt="logo"
           class="img-fluid"
           loading="lazy"
@@ -28,24 +28,16 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#about"
-              ><i class="bi bi-file-person"></i> About</a
-            >
+            <a class="nav-link" href="#about"><i class="bi bi-file-person"></i> About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#resume"
-              ><i class="bi bi-person-vcard"></i> Products</a
-            >
+            <a class="nav-link" href="#resume"><i class="bi bi-person-vcard"></i> Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#testimonials"
-              ><i class="bi bi-people-fill"></i> Admin</a
-            >
+            <a class="nav-link" href="#testimonials"><i class="bi bi-people-fill"></i> Admin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#reachMe"
-              ><i class="bi bi-telephone"></i> Reach Us</a
-            >
+            <a class="nav-link" href="#reachMe"><i class="bi bi-telephone"></i> Reach Us</a>
           </li>
         </ul>
       </div>
@@ -55,8 +47,7 @@
 
 <style scoped>
 li a:hover {
-    background-color: #CBBDBD;
-    ;
+  background-color: #cbbdbd;
 }
 h3 {
   margin: 40px 0 0;
@@ -70,9 +61,9 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #CBBDBD;
+  color: #cbbdbd;
 }
-nav{
-  background-color: #480842;
+nav {
+  background-color: rgba(120, 40, 100, 0.9);
 }
 </style>
