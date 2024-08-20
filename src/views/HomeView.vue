@@ -1,19 +1,47 @@
 <template>
-  <div class="home">
-    <h2>Home review</h2>
+  <div class="container">
+    <div class="row">
+      <h2 class="display-2">Welcome Home</h2>
+    </div>
+    <div class="row">
+      <h4 class="display-4">Most Recent</h4>
+    </div>
+    <div class="row gap-2 justify-content-center" v-if="recentProducts">
+
+      <Card v-for="product in recentProducts" :key="product.productID">
+        <template #cardHeader>
+          {{ product.productURL }}
+          <img :src="product.prodURL" loading="lazy" class="img-fluid" :alt="product.prodName">
+        </template>
+        <template #cardBody>
+          <h5 class="card-title fw-bold">{{ product.prodName }}</h5>
+          <p class="lead">{{ product.prodDescription }}</p>
+          <p class="lead"><span class="text-success fw-bold">Amount</span>: R{{ product.amount }}</p>
+        </template>
+      </Card>
+    </div>
+    <div v-else>
+      <Spinner />
+    </div>
   </div>
 </template>
+
 <script>
-
-
+import Card from '@/components/Card.vue'
+import Spinner from '@/components/Spinner.vue'
 export default {
   name: 'HomeView',
-  components: {},
-};
-</script>
-<style scoped>
-.home {
-  color: white;
-  background-color: #0b0a0a;
+  components: {
+    Card,
+    Spinner
+  },
+  computed: {
+    recentProducts() {
+      return this.$store.state.recentProducts
+    }
+  },
+  mounted() {
+    this.$store.dispatch('recentProducts')
+  }
 }
-</style>
+</script>

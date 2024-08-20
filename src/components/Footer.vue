@@ -28,6 +28,6 @@ footer{
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 700;
   font-style: italic;
-
+  text-shadow:  2px 2px 4px white;
 }
 </style>

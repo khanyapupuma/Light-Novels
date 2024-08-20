@@ -47,7 +47,8 @@
 
 <style scoped>
 li a:hover {
-  background-color: #cbbdbd;
+  background-color: #0d0a0a;
+  text-shadow:  2px 2px 4px white;
 }
 h3 {
   margin: 40px 0 0;
