@@ -5,7 +5,7 @@ const getProductsDb = async()=>{
     return data
 }
 const selectProductsDb =  async(prodID)=>{
-    let [data] = await pool.query('SELECT *FROM products WHERE prodID = ?',[prodID])
+    let [[data]] = await pool.query('SELECT *FROM products WHERE prodID = ?',[prodID])
     return data; 
     
     
@@ -15,9 +15,9 @@ const deleteProductDb=async(prodID)=>{
            // return data 
        }
        
-const updateProductDb=async(prodName,quantity,amount,Category,prodUrl, prodID)=>{
+const updateProductDb=async(prodID,prodName,quantity,amount,Category,prodUrl )=>{
         
-        await pool.query('UPDATE users SET prodName = ?, quantity= ?, amount= ?, Category = ?, prodUrl= ?WHERE prodID = ?', [prodName,quantity,amount,Category,prodUrl, prodID]);
+        await pool.query('UPDATE products SET prodName = ?, quantity= ?, amount= ?, Category = ?, prodUrl= ? WHERE prodID = ?', [prodID,prodName,quantity,amount,Category,prodUrl]);
 
       }; 
 export {getProductsDb,selectProductsDb,deleteProductDb,updateProductDb}

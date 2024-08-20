@@ -21,13 +21,17 @@ const updateProduct=async(req,res)=>{
     let {prodName,quantity,amount,Category,prodUrl}=req.body
     console.log(req.body);
 
-    let product =await getProductsDb(req.params.id)
+    let product =await selectProductsDb(req.params.id)
     prodName ? prodName=prodName: prodName = product.prodName
     quantity? quantity=quantity: quantity = product.quantity
     amount? amount=amount: amount = product.amount
     Category ? Category=Category: Category = product.Category
-    res.json(await updateProductDb(prodName,quantity,amount,Category,prodUrl, req.params.id))
-    res.send('Data was successfully updated ! ')
+    prodUrl ? prodUrl=prodUrl : prodUrl =product.prodUrl
+    res.json({
+        results: await updateProductDb(prodName,quantity,amount,Category,prodUrl, req.params.id),
+        msg: 'Data was successfully updated ! '
+    })
+    // res.send('Data was successfully updated ! ')
     
 }
 export{getProducts,selectProduct,deleteProduct,updateProduct}
