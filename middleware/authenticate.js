@@ -6,7 +6,7 @@ import {config} from 'dotenv'
 config()
 const checkUser=async(req,res,next)=>{
     const {userProfile,userPass} =req.body
-    let hashedP =(await selectUsersDb(userProfile))
+    let hashedP =(await selectUsersDb(userProfile)).userPass
     console.log(hashedP);
 
 let result = await compare(userPass,hashedP )

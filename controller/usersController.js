@@ -45,6 +45,9 @@ const insertUser =async(req,res)=>{
     }
  const loginUser =(req,res)=>{
     res.json({message:"Successfully Logged in!!",token :req.body.token})
+    
+    
+    
 }
 
 export{getUsers,selectUser,insertUser,deleteUser,updateUser,loginUser}

@@ -4,8 +4,8 @@ const getUsersDb = async()=>{
     let [data] = await pool.query("SELECT * FROM users ")
     return data
 }
-const selectUsersDb =  async(userID)=>{
-    let [data] = await pool.query('SELECT *FROM users WHERE userID = ?',[userID])
+const selectUsersDb =  async(userProfile)=>{
+    let [[data]] = await pool.query('SELECT *FROM users WHERE userProfile= ?',[userProfile])
     return data; 
     
     

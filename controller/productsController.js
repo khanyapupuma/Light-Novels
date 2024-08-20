@@ -1,4 +1,4 @@
-import { getProductsDb,selectProductsDb ,deleteProductDb} from '../model/productsDb.js'
+import { getProductsDb,selectProductsDb ,deleteProductDb,updateProductDb} from '../model/productsDb.js'
 // import {hash} from 'bcrypt'
 
 const getProducts =async(req,res)=>{
@@ -16,5 +16,18 @@ const deleteProduct = async(req,res)=>{
     res.send('Data was deleted successfully ! ')
 }
 
+const updateProduct=async(req,res)=>{
+       
+    let {prodName,quantity,amount,Category,prodUrl}=req.body
+    console.log(req.body);
 
-export{getProducts,selectProduct,deleteProduct}
+    let product =await getProductsDb(req.params.id)
+    prodName ? prodName=prodName: prodName = product.prodName
+    quantity? quantity=quantity: quantity = product.quantity
+    amount? amount=amount: amount = product.amount
+    Category ? Category=Category: Category = product.Category
+    res.json(await updateProductDb(prodName,quantity,amount,Category,prodUrl, req.params.id))
+    res.send('Data was successfully updated ! ')
+    
+}
+export{getProducts,selectProduct,deleteProduct,updateProduct}

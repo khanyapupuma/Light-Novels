@@ -1,5 +1,5 @@
 import express from 'express'
-import {getProducts,selectProduct,deleteProduct} from '../controller/productsController.js'
+import {getProducts,selectProduct,deleteProduct, updateProduct} from '../controller/productsController.js'
 // import { checkUser } from '../middleware/authenticate.js'
 const router = express.Router()
 router.get('/',getProducts)
@@ -11,7 +11,7 @@ router.delete('/delete/:id',deleteProduct)
 
 // router.route('/:id').get(selectUser)
 
-// router.patch('/edit/:id',updateUser)
+router.patch('/edit/:id',updateProduct)
 
 
 
