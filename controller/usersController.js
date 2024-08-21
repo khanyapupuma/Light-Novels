@@ -2,19 +2,30 @@ import { getUsersDb,selectUsersDb,insertUserDb,deleteUserDb,updateUserDb,selectU
 import {hash} from 'bcrypt'
 
 const getUsers =async(req,res)=>{
+    try{
+    res.json(await getUsersDb())    
+    }catch(e){
+        res.status(500).send('Server error!')
+    }
     
-    res.json(await getUsersDb())
 }
 
 const selectUser = async(req,res)=>{
-    console.log(req.params.id);
-    res.json(await selectUserDb(req.params.id))
+    // console.log(req.params.id);
+    try{
+     res.json(await selectUserDb(req.params.id))     
+    }catch(e){
+        res.status(400).send('Unable to get user !')
+    }
+  
     // res.send('Endpoint reached !')
     
 }
 
 
 const insertUser =async(req,res)=>{
+    
+
     
     let {firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile}= req.body
     let exisitingEmail = (await selectUsersDb(emailAdd)).emailAdd
@@ -32,7 +43,7 @@ const insertUser =async(req,res)=>{
                 await insertUserDb(firstName,lastName,userAge,Gender,userRole,emailAdd,hashedP,userProfile)
                 res.send('Data was inserted successfully !')
             }catch(e){
-                res.send('All fields must be filled in , re-insert data !')
+                res.status(400).send('All fields must be filled in , re-insert data !')
             }
         })
         
@@ -43,10 +54,17 @@ const insertUser =async(req,res)=>{
        
     
 const deleteUser = async(req,res)=>{
-    await deleteUserDb(req.params.id)
-    res.send('Data was deleted successfully ! ')
+    try{
+       await deleteUserDb(req.params.id)
+    res.status(200).send('Data was deleted successfully ! ') 
+    }catch(e){
+        res.status(400).send('Invalid User !')
+    }
+    
 }
     const updateUser=async(req,res)=>{
+       try{
+
        
         let {firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile}=req.body
         console.log(req.body);
@@ -57,12 +75,19 @@ const deleteUser = async(req,res)=>{
         userAge ? userAge=userAge: userAge = user.userAge
         Gender ? Gender=Gender: Gender = user.Gender
         res.json(await updateUserDb(firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile, req.params.id))
-        res.send('Data was successfully updated ! ')
-        
+        // res.send('Data was successfully updated ! ')
+        }catch(e){
+res.status(400).send('')
+        }
     }
    
  const loginUser =(req,res)=>{
-    res.json({message:"Successfully Logged in!!",token :req.body.token})
+    try{
+      res.json({message:"Successfully Logged in!!",token :req.body.token})     
+    }catch(e){
+        res.send('Register first if you do not have login credentials ! ')
+    }
+ 
     
     
     
