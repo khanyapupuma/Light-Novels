@@ -1,4 +1,4 @@
-import { getUsersDb,selectUsersDb,insertUserDb,deleteUserDb,updateUserDb} from '../model/usersDb.js'
+import { getUsersDb,selectUsersDb,insertUserDb,deleteUserDb,updateUserDb,selectUserDb} from '../model/usersDb.js'
 import {hash} from 'bcrypt'
 
 const getUsers =async(req,res)=>{
@@ -8,27 +8,44 @@ const getUsers =async(req,res)=>{
 
 const selectUser = async(req,res)=>{
     console.log(req.params.id);
-    res.json(await selectUsersDb(req.params.id))
+    res.json(await selectUserDb(req.params.id))
     // res.send('Endpoint reached !')
     
 }
 
-const insertUser =async(req,res)=>{
-    let {firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile}= req.body
 
-     hash(userPass,10,async(err,hashedP)=>{
-        if(err) throw err
-        console.log(hashedP);
+const insertUser =async(req,res)=>{
+    
+    let {firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile}= req.body
+    let exisitingEmail = (await selectUsersDb(emailAdd)).emailAdd
+    if (emailAdd == exisitingEmail) {
+        res.status(403).send('Email already exisits')
+        return
+    } else{
+        userRole = 'user'
         
-      await insertUserDb(firstName,lastName,userAge,Gender,userRole,emailAdd,hashedP,userProfile)
-     })
+        hash(userPass,10,async(err,hashedP)=>{
+            if(err) throw err
+            console.log(hashedP);
+            
+            try{
+                await insertUserDb(firstName,lastName,userAge,Gender,userRole,emailAdd,hashedP,userProfile)
+                res.send('Data was inserted successfully !')
+            }catch(e){
+                res.send('All fields must be filled in , re-insert data !')
+            }
+        })
+        
+    }
+}
+    //     
+    
        
-        res.send('Data was inserted successfully !')
-    }
-    const deleteUser = async(req,res)=>{
-        res.json(await deleteUserDb(req.params.id))
-        res.send('Data was deleted successfully ! ')
-    }
+    
+const deleteUser = async(req,res)=>{
+    await deleteUserDb(req.params.id)
+    res.send('Data was deleted successfully ! ')
+}
     const updateUser=async(req,res)=>{
        
         let {firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile}=req.body
@@ -43,6 +60,7 @@ const insertUser =async(req,res)=>{
         res.send('Data was successfully updated ! ')
         
     }
+   
  const loginUser =(req,res)=>{
     res.json({message:"Successfully Logged in!!",token :req.body.token})
     

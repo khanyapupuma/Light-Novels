@@ -4,8 +4,14 @@ const getUsersDb = async()=>{
     let [data] = await pool.query("SELECT * FROM users ")
     return data
 }
-const selectUsersDb =  async(userProfile)=>{
-    let [[data]] = await pool.query('SELECT *FROM users WHERE userProfile= ?',[userProfile])
+const selectUsersDb =  async(emailAdd)=>{
+    let [[data]] = await pool.query('SELECT *FROM users WHERE emailAdd= ?',[emailAdd])
+    return data? data : ''; 
+    
+    
+}
+const selectUserDb =  async(userID)=>{
+    let [[data]] = await pool.query('SELECT *FROM users WHERE userID= ?',[userID])
     return data; 
     
     
@@ -29,4 +35,4 @@ const insertUserDb =async(firstName,lastName,userAge,Gender,userRole,emailAdd,us
         }; 
     
 
-export {getUsersDb,selectUsersDb,insertUserDb,deleteUserDb,updateUserDb}
+export {getUsersDb,selectUsersDb,insertUserDb,deleteUserDb,updateUserDb,selectUserDb}
