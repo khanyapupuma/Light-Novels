@@ -1,4 +1,4 @@
-import { getProductsDb,selectProductsDb ,deleteProductDb,updateProductDb} from '../model/productsDb.js'
+import { getProductsDb,selectProductsDb ,deleteProductDb,updateProductDb,insertProductDb} from '../model/productsDb.js'
 // import {hash} from 'bcrypt'
 
 const getProducts =async(req,res)=>{
@@ -11,8 +11,22 @@ const selectProduct = async(req,res)=>{
     // res.send('Endpoint reached !')
     
 }
+
+const insertProduct =async(req,res)=>{
+    try{
+    let {prodName,quantity,amount,Category,prodUrl,prodDescription}= req.body
+       
+         await insertProductDb(prodName,quantity,amount,Category,prodUrl,prodDescription)
+                res.send('Data was inserted successfully !')
+       }catch(e){
+                res.send('All fields must be filled in , re-insert data !')
+            }
+        
+        
+    
+}
 const deleteProduct = async(req,res)=>{
-    res.json(await deleteProductDb(req.params.id))
+    await deleteProductDb(req.params.id)
     res.send('Data was deleted successfully ! ')
 }
 
@@ -35,4 +49,4 @@ const updateProduct=async(req,res)=>{
     // res.send('Data was successfully updated ! ')
     
 }
-export{getProducts,selectProduct,deleteProduct,updateProduct}
+export{getProducts,selectProduct,deleteProduct,updateProduct,insertProduct}

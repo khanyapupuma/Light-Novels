@@ -4,14 +4,14 @@ import { checkUser } from '../middleware/authenticate.js'
 const router = express.Router()
 router.get('/',getUsers)
 router.get('/:id',selectUser)
-router.post('/insert',insertUser)
-router.delete('/delete/:id',deleteUser)
+router.post('/signup',insertUser)
+router.delete('/:id',deleteUser)
 router.post('/login',checkUser,loginUser)
 
 
 // router.route('/:id').get(selectUser)
 
-router.patch('/edit/:id',updateUser)
+router.patch('/:id',updateUser)
 
 
 
