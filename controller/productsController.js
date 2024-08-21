@@ -2,12 +2,23 @@ import { getProductsDb,selectProductsDb ,deleteProductDb,updateProductDb,insertP
 // import {hash} from 'bcrypt'
 
 const getProducts =async(req,res)=>{
-    
-    res.json(await getProductsDb())
+    try{
+          res.json(await getProductsDb()) 
+        //   res.status(200).send()
+    }catch(e){
+        res.status(404).send('Sever not reached!')
+    }
+ 
 }
 const selectProduct = async(req,res)=>{
-    console.log(req.params.id);
-    res.json(await selectProductsDb(req.params.id))
+    // console.log(req.params.id);
+    try{
+        
+         res.json(await selectProductsDb(req.params.id))
+    }catch(e){
+        res.status(400).send('Product not found !')
+    }
+   
     // res.send('Endpoint reached !')
     
 }
@@ -26,11 +37,18 @@ const insertProduct =async(req,res)=>{
     
 }
 const deleteProduct = async(req,res)=>{
-    await deleteProductDb(req.params.id)
+    try{
+         await deleteProductDb(req.params.id)
     res.send('Data was deleted successfully ! ')
 }
-
+   catch(e){
+        res.status(400).send('Try again !')
+    }
+   
+ }
 const updateProduct=async(req,res)=>{
+       try{
+
        
     let {prodName,quantity,amount,Category,prodUrl,prodDescription}=req.body
     console.log(req.body);
@@ -45,7 +63,9 @@ const updateProduct=async(req,res)=>{
     res.json({
         results: await updateProductDb(prodName,quantity,amount,Category,prodUrl,prodDescription, req.params.id),
         msg: 'Data was successfully updated ! '
-    })
+    })}catch(e){
+        res.status(500).send('Server error !!')
+    }
     // res.send('Data was successfully updated ! ')
     
 }

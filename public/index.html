@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content table</title>
+  <style>
+   body  {background-color:purple;}
+   table {background-color: black;color: aqua;width: 1000px;height: 600px;font-size: larger;margin-left:250px ;border-color: rgb(17, 187, 175);}
+</style>  
 </head>
+
 <body>
     <table border="2">
         <tr>
-            <th>Users Table</th>
+            <th style="text-align: center">Users Table</th>
         </tr>
         <tr>
             <th>Path</th>
@@ -28,23 +33,34 @@
             <td>Gets a single user by id </td> 
         </tr>
         <tr>
-            <td>/insert</td>
+            <td>/signup</td>
             <td>POST</td>
             <td>Adds a user to the database </td>
         </tr>
         <tr>
-            <td>/delete/:id</td>
+            <td>/login</td>
+            <td>POST</td>
+            <td>Enables the user to login </td>
+        </tr>
+        <tr>
+            <td>/:id</td>
             <td>DELETE</td>
             <td>Deletes a user  by ID</td>
         </tr>
         <tr>
-            <td>/edit/:id</td>
+            <td>/:id</td>
             <td>PATCH</td>
             <td>Edits all information of a user by id </td>
 
         </tr>
         <tr>
-            <th>Products Table</th>
+            <th style="text-align: center;width: 600px;">Products Table</th>
+        </tr>
+        <tr>
+            <th>Path</th>
+            <th>Method</th>
+            <th>Description</th>
+        
         </tr>
         <tr>
             <td>/products</td>
@@ -57,17 +73,17 @@
             <td>Gets a single product by id </td> 
         </tr>
         <tr>
-            <td>/insert</td>
+            <td>/products</td>
             <td>POST</td>
             <td>Adds a product </td>
         </tr>
         <tr>
-            <td>/delete/:id</td>
+            <td>/:id</td>
             <td>DELETE</td>
             <td>Deletes a product  by ID</td>
         </tr>
         <tr>
-            <td>/edit/:id</td>
+            <td>/:id</td>
             <td>PATCH</td>
             <td>Edits  information of a product by id </td>
 
