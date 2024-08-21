@@ -18,7 +18,7 @@ const deleteProduct = async(req,res)=>{
 
 const updateProduct=async(req,res)=>{
        
-    let {prodName,quantity,amount,Category,prodUrl}=req.body
+    let {prodName,quantity,amount,Category,prodUrl,prodDescription}=req.body
     console.log(req.body);
 
     let product =await selectProductsDb(req.params.id)
@@ -27,8 +27,9 @@ const updateProduct=async(req,res)=>{
     amount? amount=amount: amount = product.amount
     Category ? Category=Category: Category = product.Category
     prodUrl ? prodUrl=prodUrl : prodUrl =product.prodUrl
+    prodDescription ? prodDescription=prodDescription : prodDescription =product.prodDescription
     res.json({
-        results: await updateProductDb(prodName,quantity,amount,Category,prodUrl, req.params.id),
+        results: await updateProductDb(prodName,quantity,amount,Category,prodUrl,prodDescription, req.params.id),
         msg: 'Data was successfully updated ! '
     })
     // res.send('Data was successfully updated ! ')

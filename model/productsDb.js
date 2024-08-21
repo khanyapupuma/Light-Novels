@@ -15,9 +15,9 @@ const deleteProductDb=async(prodID)=>{
            // return data 
        }
        
-const updateProductDb=async(prodID,prodName,quantity,amount,Category,prodUrl )=>{
+const updateProductDb=async(prodID,prodName,quantity,amount,Category,prodUrl,prodDescription )=>{
         
-        await pool.query('UPDATE products SET prodName = ?, quantity= ?, amount= ?, Category = ?, prodUrl= ? WHERE prodID = ?', [prodID,prodName,quantity,amount,Category,prodUrl]);
+        await pool.query('UPDATE products SET prodName = ?, quantity= ?, amount= ?, Category = ?, prodUrl= ?, prodDescription=? WHERE prodID = ?', [prodID,prodName,quantity,amount,Category,prodUrl,prodDescription]);
 
       }; 
 export {getProductsDb,selectProductsDb,deleteProductDb,updateProductDb}
