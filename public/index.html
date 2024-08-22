@@ -7,10 +7,12 @@
   <style>
    body  {background-color:purple;}
    table {background-color: black;color: aqua;width: 1000px;height: 600px;font-size: larger;margin-left:250px ;border-color: rgb(17, 187, 175);}
+   h1 {font-size:50px;}
 </style>  
 </head>
 
 <body>
+    <h1> Navigation 👾 </h1>
     <table border="2">
         <tr>
             <th style="text-align: center">Users Table</th>
@@ -33,7 +35,7 @@
             <td>Gets a single user by id </td> 
         </tr>
         <tr>
-            <td>/signup</td>
+            <td>/register</td>
             <td>POST</td>
             <td>Adds a user to the database </td>
         </tr>
@@ -43,12 +45,12 @@
             <td>Enables the user to login </td>
         </tr>
         <tr>
-            <td>/:id</td>
+            <td>/delete/:id</td>
             <td>DELETE</td>
             <td>Deletes a user  by ID</td>
         </tr>
         <tr>
-            <td>/:id</td>
+            <td>/update/:id</td>
             <td>PATCH</td>
             <td>Edits all information of a user by id </td>
 
@@ -73,17 +75,17 @@
             <td>Gets a single product by id </td> 
         </tr>
         <tr>
-            <td>/products</td>
+            <td>/products/addProduct</td>
             <td>POST</td>
             <td>Adds a product </td>
         </tr>
         <tr>
-            <td>/:id</td>
+            <td>/delete/:id</td>
             <td>DELETE</td>
             <td>Deletes a product  by ID</td>
         </tr>
         <tr>
-            <td>/:id</td>
+            <td>/update/:id</td>
             <td>PATCH</td>
             <td>Edits  information of a product by id </td>
 

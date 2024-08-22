@@ -4,14 +4,14 @@ import {getProducts,selectProduct,deleteProduct, updateProduct,insertProduct} fr
 const router = express.Router()
 router.get('/',getProducts)
 router.get('/:id',selectProduct)
-router.delete('/:id',deleteProduct)
-router.post('/',insertProduct)
+router.delete('/delete/:id',deleteProduct)
+router.post('/addProduct',insertProduct)
 // router.post('/login',checkUser,loginUser)
 
 
 // router.route('/:id').get(selectUser)
 
-router.patch('/:id',updateProduct)
+router.patch('/update/:id',updateProduct)
 
 
 
