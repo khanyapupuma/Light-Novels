@@ -44,11 +44,14 @@
   
   <style scoped>
   .card {
+    margin: 40px;
     background-color: transparent;
     color: white;
     border: solid purple 2px;
+    width: 500px;
   }
   .card-img {
+    width: 300px;
     border-radius: 6px;
     border: solid purple 4px;
   }
