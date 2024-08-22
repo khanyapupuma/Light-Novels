@@ -10,6 +10,7 @@ const getProducts =async(req,res)=>{
     }
  
 }
+
 const selectProduct = async(req,res)=>{
     // console.log(req.params.id);
     try{
