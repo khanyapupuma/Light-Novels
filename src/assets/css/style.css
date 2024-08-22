@@ -56,7 +56,9 @@ img {
 
 /* Logo */
 img[alt='logo'] {
-    width: 5rem;
+    width: 398px;
+    height: 100px;
+    padding-right: 70px;
 }
 
 /* Media query */
