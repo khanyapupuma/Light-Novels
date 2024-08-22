@@ -4,14 +4,7 @@ import productsRouter from './router/productsRouter.js'
 import cors from 'cors'
 
 const app =express()
-
-app.use(cors({
-    origin :'*',credentials:true,
-methods: '*',
-allowedHeaders: '*',
-exposedHeaders: ['Authorization']})
-)
-
+app.use(cors({origin :'http://localhost:8080',credentials:true}))
 let port=process.env.PORT || 5005
 app.use(express.json())
 
