@@ -34,6 +34,7 @@ const insertUser =async(req,res)=>{
         return
     } else{
         userRole = 'user'
+        userProfile = 'https://codjoelmayer.github.io/projectImages/images/profile-Image.png'
         
         hash(userPass,10,async(err,hashedP)=>{
             if(err) throw err
