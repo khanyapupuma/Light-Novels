@@ -28,9 +28,9 @@ const insertUserDb =async(firstName,lastName,userAge,Gender,userRole,emailAdd,us
                // return data 
            }
 
-    const updateUserDb=async(firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile, userID)=>{
+    const updateUserDb=async(firstName,lastName,userAge,Gender,emailAdd,userProfile, userID)=>{
         
-          await pool.query('UPDATE users SET firstName = ?, lastName = ?, userAge = ?, Gender = ?, userRole= ?, emailAdd = ? ,userPass = ? ,userProfile = ? WHERE userID = ?', [firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile, userID]);
+          await pool.query('UPDATE users SET firstName = ?, lastName = ?, userAge = ?, Gender = ?, emailAdd = ?  ,userProfile = ? WHERE userID = ?', [firstName,lastName,userAge,Gender,emailAdd,userProfile, userID]);
 
         }; 
     

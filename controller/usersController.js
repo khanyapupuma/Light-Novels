@@ -66,19 +66,23 @@ const deleteUser = async(req,res)=>{
        try{
 
        
-        let {firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile}=req.body
+        let {firstName,lastName,userAge,Gender,emailAdd,userProfile}=req.body
         console.log(req.body);
 
-        let user =await getUsersDb(req.params.id)
+        let user =await selectUserDb(req.params.id)
         firstName ? firstName=firstName: firstName = user.firstName
         lastName? lastName=lastName: lastName = user.lastName
         userAge ? userAge=userAge: userAge = user.userAge
         Gender ? Gender=Gender: Gender = user.Gender
-        res.json(await updateUserDb(firstName,lastName,userAge,Gender,userRole,emailAdd,userPass,userProfile, req.params.id))
-        // res.send('Data was successfully updated ! ')
-        }catch(e){
-res.status(400).send('')
+        emailAdd ?  emailAdd= emailAdd:  emailAdd = user. emailAdd
+        userProfile ?   userProfile=  userProfile:   userProfile = user.  userProfile
+        res.json({
+            results: await updateUserDb(firstName,lastName,userAge,Gender,emailAdd,userProfile, req.params.id),
+            msg: 'Data was successfully updated ! '
+        })}catch(e){
+            res.status(500).send('Server error !!')
         }
+      
     }
    
  const loginUser =(req,res)=>{
