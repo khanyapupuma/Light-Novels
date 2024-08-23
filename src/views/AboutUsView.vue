@@ -86,7 +86,7 @@
           />
         </div>
         <p>
-          Hello, I’m Khanya Pupuma. <br><br>
+          Hey there! I'm Khanya Pupuma <br><br>
            I am a quiet and introverted individual, I find solace in the quiet
           moments and the world of literature. My introverted nature allows me to deeply appreciate
           the subtleties of storytelling and the beauty of written words.<br /><br />

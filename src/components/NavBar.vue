@@ -32,7 +32,7 @@
             <router-link class="nav-link" to="/products">Products</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/admin">Admin</router-link>
+            <router-link class="nav-link dropdown" to="/admin"> Admin</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/reach-us">Reach Us</router-link>

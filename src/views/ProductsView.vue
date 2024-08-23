@@ -3,10 +3,28 @@
     <div class="row">
       <h2 class="display-2">Product Details</h2>
     </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input 
+          type="text" 
+          v-model="searchQuery" 
+          class="form-control"
+          placeholder="Search"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-primary" @click="sortByName">Sort by Name</button>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary" @click="sortByPrice">Sort by Price</button>
+      </div>
+    </div>
+
     <div class="row">
-      <!-- Check if products are loaded -->
-      <div v-if="products && products.length" class="row">
-        <div class="col-md-4" v-for="product in products" :key="product.prodID">
+      <div v-if="filteredProducts.length" class="row">
+        <div class="col-md-4" v-for="product in filteredProducts" :key="product.prodID">
           <Card class="card">
             <template #cardHeader>
               <img
@@ -21,16 +39,16 @@
               <p class="lead">
                 <span class="text-success fw-bold">Amount</span>: R{{ product.amount }}
               </p>
-              <button>
-               <router-link :to="{ name: 'ProductDetails', params: { id: product.prodID } }">
-                View more...
-               </router-link>
+              <button class="card-btn">
+                <router-link :to="{ name: 'ProductDetails', params: { id: product.prodID } }">
+                  View more...
+                </router-link>
               </button>
             </template>
           </Card>
         </div>
       </div>
-      <!-- Loading spinner if products are not loaded yet -->
+
       <div v-else>
         <Spinner />
       </div>
@@ -39,20 +57,46 @@
 </template>
 
 <script setup>
+import { ref, computed, onMounted } from "vue";
 import { useStore } from "vuex";
-import { computed, onMounted } from "vue";
 import Card from "@/components/Card.vue";
 import Spinner from "@/components/Spinner.vue";
-// import ProductDetails from './ProductDetails.vue'
 
 const store = useStore();
 
-// Use a computed property to access products from the Vuex store
+const searchQuery = ref("");
+const sortBy = ref(null);
+
 const products = computed(() => store.state.products);
 
-// Dispatch the action to fetch products when the component is mounted
+const filteredProducts = computed(() => {
+  let filtered = products.value.filter((product) => {
+    const name = product.prodName ? product.prodName.toLowerCase() : "";
+    const category = product.category ? product.category.toLowerCase() : "";
+    const query = searchQuery.value.toLowerCase();
+
+    return name.includes(query) || category.includes(query);
+  });
+
+  if (sortBy.value === "name") {
+    filtered.sort((a, b) => a.prodName.localeCompare(b.prodName));
+  } else if (sortBy.value === "price") {
+    filtered.sort((a, b) => a.amount - b.amount);
+  }
+
+  return filtered;
+});
+
+const sortByName = () => {
+  sortBy.value = "name";
+};
+
+const sortByPrice = () => {
+  sortBy.value = "price";
+};
+
 onMounted(() => {
-  store.dispatch("fetchProducts"), store.dispatch("fetchProduct");
+  store.dispatch("fetchProducts");
 });
 </script>
 
@@ -71,6 +115,7 @@ onMounted(() => {
   border-radius: 6px;
   border: solid purple 4px;
 }
+.card-btn 
 h5 {
   color: purple;
 }
@@ -80,7 +125,7 @@ button {
   margin: 10px;
   border-radius: 6px;
   background-color: purple;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 button:hover {
   background-color: blueviolet;

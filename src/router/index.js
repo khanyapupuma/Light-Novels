@@ -9,6 +9,16 @@ import ProductDetails from '@/views/ProductDetails.vue';
 
 const routes = [
   {
+    path: '/user-admin',
+    name: 'UserAdmin',
+    component: () => import('@/views/UserAdmin.vue')
+  },
+  {
+    path: '/products-admin',
+    name: 'ProductsAdmin',
+    component: () => import('@/views/ProductAdmin.vue')
+  },
+  {
     path: '/',
     name: 'home',
     component: HomeView,

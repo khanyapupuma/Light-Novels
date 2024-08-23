@@ -9,15 +9,16 @@
             <img :src="product.prodUrl" loading="lazy" class="img-fluid card-img" :alt="product.prodName">
           </template>
           <template #cardBody>
-            <h5 class="card-title fw-bold">{{ product.prodName }}</h5>
+            <h5 class="card-title fw-bold name">{{ product.prodName }}</h5>
             <p class="lead">{{ product.prodDescription }}</p>
+            <p class="lead"> <bold class="genre"> Genre:</bold> {{ product.Category }}</p>
             <p class="lead"><span class="text-success fw-bold">Amount</span>: R{{ product.amount }}</p>
             <button>Add to Favourites</button>
           </template>
         </Card>
       </div>
       <div v-else>
-        <Spinner />
+        <spinner/>
       </div>
     </div>
   </template>
@@ -29,14 +30,11 @@
   import Card from '@/components/Card.vue';
   import Spinner from '@/components/Spinner.vue';
   
-  // Access the store and the current route
   const store = useStore();
   const route = useRoute();
-  
-  // Get the product from the store based on the route parameter `id`
+ 
   const product = computed(() => store.getters.singleProduct);
   
-  // Fetch the product when the component is mounted
   onMounted(() => {
     store.dispatch('fetchProduct', route.params.id);
   });
@@ -70,5 +68,11 @@
     background-color: blueviolet;
     color: black;
   }
+  .genre{
+    color: purple;
+    font-size: larger;
+    font-weight: bold;
+  }
+
   </style>
   

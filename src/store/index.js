@@ -16,7 +16,7 @@ export default createStore({
   state: {
     users: [],
     products: [],
-    user: null,
+    user: [],
     product: null,
     error: null,
     isLoading: false 
@@ -38,8 +38,77 @@ export default createStore({
     setProduct(state, product) {
       state.product = product
     },
+    setUser(state, user) {
+      state.user = user;
+    },
+    setProducts(state, products) {
+      state.products = products;
+    },
   },
   actions: {
+  async  deleteUser({ commit }, id) {
+      // Make API call to delete user with the specified id
+    await  axios.delete(`${apiURL}/users/delete/${id}`)
+        .then(response => {
+          // Update the state
+          commit('setUsers', response.data);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+  
+    async fetchProducts({ commit }) {
+      try {
+        const response = await axios.get(`${apiURL}products`);
+        commit('setProducts', response.data);
+      } catch (error) {
+        toast.error(`Failed to fetch products: ${error.message}`);
+      }
+    },
+    async updateProduct({ dispatch }, product) {
+      try {
+        await axios.put(`${apiURL}products/${product.id}`, product);
+        toast.success('Product updated successfully');
+        dispatch('fetchProducts');
+      } catch (error) {
+        toast.error(`Failed to update product: ${error.message}`);
+      }
+    },
+    async deleteProduct({ dispatch }, id) {
+      try {
+        await axios.delete(`${apiURL}products/delete/${id}`);
+        toast.success('Product deleted successfully');
+        dispatch('fetchProducts');
+      } catch (error) {
+        toast.error(`Failed to delete product: ${error.message}`);
+      }
+    },
+  
+    // Update User
+    async updateUser({ dispatch }, user) {
+      try {
+     const {data} =   await axios.put(`${apiURL}users/${user.id}`, user); 
+    //  console.log(data);
+        toast.success('User updated successfully');
+        dispatch('fetchUsers');
+      } catch (error) {
+        toast.error(`Failed to update user: ${error.message}`);
+      }
+      location.reload;
+    },
+    async deleteUser({ dispatch }, id) {
+      try {
+      const {datap}  =  await axios.delete(`${apiURL}users/delete/${user.id}`,id);
+        toast.success('User deleted successfully');
+        console.log(datap);
+        
+        // dispatch('fetchUsers');
+      } catch (error) {
+        toast.error(`Failed to delete user: ${error.message}`);
+      }
+      location.reload;
+    },
     async fetchProduct({ commit }, id) {
       try {
         const { data } = await axios.get(`${apiURL}products/${id}`);
@@ -108,6 +177,6 @@ export default createStore({
     }
   },
   modules: {
-    // Modules if any
+    
   }
 })
