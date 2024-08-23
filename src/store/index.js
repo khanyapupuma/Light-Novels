@@ -97,11 +97,26 @@ export default createStore({
       }
       location.reload;
     },
-    async deleteUser({ dispatch }, id) {
+    // Add User
+    async addUser(context, id) {
       try {
-      const {datap}  =  await axios.delete(`${apiURL}users/delete/${user.id}`,id);
-        toast.success('User deleted successfully');
-        console.log(datap);
+      const {data}  =  await axios.post(`${apiURL}users/register/${id}`);
+      toast.success('User registered successfully');
+      console.log(data);
+      
+        
+        // dispatch('fetchUsers');
+      } catch (error) {
+        toast.error(`Failed to add user: ${error.message}`);
+      }
+      location.reload;
+    },
+    async deleteUser(context, id) {
+      try {
+      const {data}  =  await axios.delete(`${apiURL}users/delete/${id}`);
+      toast.success('User deleted successfully');
+      console.log(data);
+      
         
         // dispatch('fetchUsers');
       } catch (error) {
