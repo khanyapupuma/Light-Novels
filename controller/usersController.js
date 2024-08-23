@@ -33,7 +33,7 @@ const insertUser =async(req,res)=>{
         res.status(403).send('Email already exisits')
         return
     } else{
-        userRole = 'user'
+        userRole = 'user'    b 
         userProfile = 'https://codjoelmayer.github.io/projectImages/images/profile-Image.png'
         
         hash(userPass,10,async(err,hashedP)=>{
