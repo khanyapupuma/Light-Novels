@@ -1,6 +1,7 @@
 <template>
     <div class="container">
       <h2 class="display-4">Products Management</h2>
+      <button>Add Products</button>
       <table class="table-primary table-bordered" id="table" :style="{backgroundColor:'#86226A',width:'1200px',borderColor:'#000000',borderWidth:'40px',borderStyle:'solid'}">
         <thead>
           <tr>
@@ -17,7 +18,7 @@
             <td>R{{ product.amount }}</td>
             <td>
               <button @click="editProduct(product)" class="btn " :style="{backgroundColor:'#000000',color:'#ffffff'}">Edit</button>
-              <button @click="deleteProduct(product.id)" class="btn " :style="{backgroundColor:'#000000',color:'#ffffff'}">Delete</button>
+              <button @click="deleteProduct(product.prodID)" class="btn " :style="{backgroundColor:'#000000',color:'#ffffff'}">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -88,15 +89,15 @@
   };
   
   // Delete a product via API call
-  const deleteProduct = (id) => {
+  const deleteProduct = (prodID) => {
     if (confirm("Are you sure you want to delete this product?")) {
-      store.dispatch('deleteProduct', id).then(() => {
-        store.dispatch('fetchProducts').then(() => {
+      store.dispatch('deleteProduct', prodID)
+        store.dispatch('fetchProducts')
           products.value = store.state.products;
-        });
-      });
+       
     }
   };
+   
   </script>
   
   <style scoped>

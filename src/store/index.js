@@ -46,16 +46,31 @@ export default createStore({
     },
   },
   actions: {
-  async  deleteUser({ commit }, id) {
-      // Make API call to delete user with the specified id
-    await  axios.delete(`${apiURL}/users/delete/${id}`)
-        .then(response => {
-          // Update the state
-          commit('setUsers', response.data);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+  async deleteUser(context, id) {
+      try {
+      const {data}  =  await axios.delete(`${apiURL}users/delete/${id}`);
+      toast.success('User deleted successfully');
+      console.log(data);
+      
+        
+        // dispatch('fetchUsers');
+      } catch (error) {
+        toast.error(`Failed to delete user: ${error.message}`);
+      }
+      location.reload;
+    },
+    async  deleteProduct(context, id) {
+      try{
+      const {data} = await  axios.delete(`${apiURL}/products/delete/${id}`)
+      toast.success('Product deleted successfully');
+      console.log(data);
+      } catch (error) {
+        toast.error(`Failed to delete product: ${error.message}`);
+      }
+      location.reload;
+     
+    
+       
     },
   
     async fetchProducts({ commit }) {
@@ -98,32 +113,22 @@ export default createStore({
       location.reload;
     },
     // Add User
-    async addUser(context, id) {
+    async addUser(context, userData) {
       try {
-      const {data}  =  await axios.post(`${apiURL}users/register/${id}`);
-      toast.success('User registered successfully');
-      console.log(data);
-      
-        
-        // dispatch('fetchUsers');
+        const { data } = await axios.post(`${apiURL}users/register`, userData);
+        toast.success('User registered successfully');
+        console.log(data);
       } catch (error) {
-        toast.error(`Failed to add user: ${error.message}`);
+        if (error.response) {
+          toast.error(`Failed to add user: ${error.response.data.message}`);
+        } else {
+          toast.error(`Failed to add user: ${error.message}`);
+        }
+      } finally {
+        location.reload();
       }
-      location.reload;
     },
-    async deleteUser(context, id) {
-      try {
-      const {data}  =  await axios.delete(`${apiURL}users/delete/${id}`);
-      toast.success('User deleted successfully');
-      console.log(data);
-      
-        
-        // dispatch('fetchUsers');
-      } catch (error) {
-        toast.error(`Failed to delete user: ${error.message}`);
-      }
-      location.reload;
-    },
+    
     async fetchProduct({ commit }, id) {
       try {
         const { data } = await axios.get(`${apiURL}products/${id}`);

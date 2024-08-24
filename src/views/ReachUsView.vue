@@ -6,12 +6,26 @@
   <div class="avatar"><img src="https://khanyapupuma.github.io/all-images/all-images/Images/khanya.jpg" alt=""></div>
   <br>
 <h3>Front-End</h3>
+<p>
+  Call: 073 792 6856
+  <br>
+  Email: khanyapupuma@gmail.com
+  <br>
+  <a href="https://www.linkedin.com/in/khanya-pupuma-41a171324/">My LinkedIn</a>
+</p>
 </div>
   <div class="avatars">
     <h2>Siphokuhle</h2>
   <div class="avatar"><img src="https://khanyapupuma.github.io/all-images/all-images/Images/sipho.jpg" alt=""></div>
   <br>
   <h3>Back-End</h3>
+  <p>
+    Call: 083 243 2798
+    <br>
+    Email: siphokuhlenyana@gmail.com
+    <br>
+  <a href="https://www.linkedin.com/in/siphokuhle-nyana-6a917016a/">My LinkedIn</a>
+  </p>
 </div>
     <div class="container">
       <h2>Contact Us:</h2>
@@ -94,7 +108,7 @@ input{
   margin-top: 20px;
 }
 .avatars:hover{
-  background-color: #dd0f80;
+  background-color: #6a073d;
 }
 .avatars {
   text-shadow: 2px 2px 4px white;
